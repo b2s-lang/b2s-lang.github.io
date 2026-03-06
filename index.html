@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single-Stage, Low-Latency, and Intelligible Brain-to-Speech Synthesis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--
+    QUICK EDIT GUIDE:
+    1. Abstract: replace the paragraph inside <section id="abstract">.
+    2. Figure: replace src in #model-figure (and optional caption).
+    3. Authors: search for "Authors:" and update the following text.
+    4. Affiliation: search for "Affiliation" and update.
+    5. Audio samples: edit the AUDIO_SAMPLES object in script.js.
+    6. Paper/ArXiv/Code/Poster: update href and text in .hero-actions.
+  -->
+  <div class="layout">
+    <header class="identity-block" aria-label="Project identity">
+      <h1 class="identity-title">Single-Stage, Low-Latency, and Intelligible Brain-to-Speech Synthesis</h1>
+      <p class="identity-meta">This project is maintained by <a href="https://github.com/b2s-lang">b2s-lang</a>.</p>
+    </header>
+
+    <main class="content">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <h2 id="hero-title" class="hero-title">Single-Stage, Low-Latency, and Intelligible Brain-to-Speech Synthesis</h2>
+        <p class="hero-authors">Authors: [To be added]</p>
+        <p class="hero-affiliation">Affiliation: [To be added]</p>
+        <p class="hero-status">Conference / submission status: [Optional — e.g. Submitted to X 2024.]</p>
+        <nav class="hero-actions" aria-label="Project links">
+          <a href="#" class="btn btn-primary">Paper</a>
+          <a href="#" class="btn btn-primary">ArXiv</a>
+          <a href="#" class="btn btn-primary">Code</a>
+          <a href="#speech-samples" class="btn btn-primary">Audio Samples</a>
+          <a href="#" class="btn btn-secondary">Poster / Slides</a>
+        </nav>
+      </section>
+
+      <!-- Abstract -->
+      <section id="abstract" class="section" aria-labelledby="abstract-heading">
+        <h3 id="abstract-heading" class="section-heading">Abstract</h3>
+        <p class="abstract-text">
+          The loss of speech limits communication for individuals with paralysis. Direct neural-to-speech synthesis is challenging due to the limited availability of neural data for training speech brain–computer interfaces. Most existing systems rely on cascaded neural-to-text-to-speech pipelines, which increase inference latency and propagate errors across stages. We present <strong>Brain2Speech-Net</strong>, a single-stage neural-to-speech generation framework without intermediate text decoding. We use a differentiable phoneme bottleneck and a deep-HMM alignment mechanism to map long neural recordings into the latent space of a pre-trained text-to-speech (TTS) model, enabling high-quality speech synthesis. On an intracortical dataset, Brain2Speech-Net achieves strong intelligibility with low latency in objective and listening tests. Unlike cascaded systems that have high latency and direct speech unit-based models that lack intelligibility, it delivers intelligible speech and real-time performance.
+        </p>
+      </section>
+
+      <!-- Model / method figure -->
+      <section id="model-overview" class="section" aria-labelledby="figure-heading">
+        <h3 id="figure-heading" class="section-heading">Model Overview</h3>
+        <figure class="figure-wrap">
+          <div class="figure-container">
+            <!-- Replace src when you add your figure; caption below is optional. -->
+            <object data="Brain2Speech-Net_v10.drawio.pdf" type="application/pdf" class="figure-pdf" title="Brain2Speech-Net architecture">
+              <p>Your browser may not support embedded PDFs. <a href="Brain2Speech-Net_v10.drawio.pdf">Download the figure (PDF)</a>.</p>
+            </object>
+          </div>
+          <figcaption class="figure-caption">Brain2Speech-Net architecture. [Caption can be updated here.]</figcaption>
+        </figure>
+      </section>
+
+      <!-- Audio demo -->
+      <section id="speech-samples" class="section audio-section" aria-labelledby="audio-heading">
+        <h3 id="audio-heading" class="section-heading">Speech Samples</h3>
+        <p class="audio-intro">Compare samples across conditions. Rows: utterances; columns: models.</p>
+        <div class="audio-scroll" role="region" aria-label="Audio comparison table">
+          <div id="audio-table" class="audio-table">
+            <!-- Populated by script.js from AUDIO_SAMPLES -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Citation -->
+      <section id="citation" class="section" aria-labelledby="citation-heading">
+        <h3 id="citation-heading" class="section-heading">Citation</h3>
+        <pre id="bibtex-block" class="bibtex" aria-label="BibTeX entry"><code>@article{brain2speech2024,
+  title     = {Single-Stage, Low-Latency, and Intelligible Brain-to-Speech Synthesis},
+  author    = {[To be added]},
+  journal   = {[To be added]},
+  year      = {2024}
+}</code></pre>
+        <button type="button" class="btn btn-copy" id="copy-bibtex" aria-label="Copy BibTeX to clipboard">Copy BibTeX</button>
+      </section>
+
+      <!-- Contact / acknowledgements -->
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h3 id="contact-heading" class="section-heading">Contact &amp; Acknowledgements</h3>
+        <p>[Contact and acknowledgements text to be added.]</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Hosted on GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

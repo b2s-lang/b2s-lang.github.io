@@ -1,0 +1,375 @@
+/* ============================================
+   Brain2Speech project page — academic, minimal
+   ============================================ */
+
+:root {
+  --bg: #f8f9fa;
+  --bg-content: #fff;
+  --text: #1a1a1a;
+  --text-muted: #555;
+  --accent: #2d3748;
+  --accent-bg: #2d3748;
+  --border: #e2e8f0;
+  --link: #2563eb;
+  --link-visited: #5b21b6;
+  --radius: 6px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Consolas", "Liberation Mono", "Menlo", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+/* Layout: identity block + main content */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+  }
+}
+
+/* Identity block (left sidebar on desktop, top on mobile) */
+.identity-block {
+  background: var(--accent-bg);
+  color: #fff;
+  padding: 1.5rem 1.25rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .identity-block {
+    width: 28%;
+    max-width: 320px;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+}
+
+.identity-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .identity-title {
+    font-size: 1.25rem;
+  }
+}
+
+.identity-meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.identity-meta a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.identity-meta a:hover {
+  color: #bfdbfe;
+}
+
+/* Main content */
+.content {
+  flex: 1;
+  padding: 1.5rem 1.25rem 2rem;
+  background: var(--bg-content);
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding: 2rem 3rem 3rem;
+  }
+}
+
+/* Section headings — semi-technical / monospace feel */
+.section-heading {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+/* Hero */
+.hero {
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+}
+
+.hero-authors,
+.hero-affiliation,
+.hero-status {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--accent-bg);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #1a202c;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn-copy {
+  margin-top: 0.5rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-copy:hover {
+  background: var(--border);
+}
+
+/* Abstract */
+.abstract-text {
+  margin: 0;
+  max-width: 72ch;
+  text-align: justify;
+}
+
+/* Figure */
+.figure-wrap {
+  margin: 0;
+}
+
+.figure-container {
+  max-width: 900px;
+  margin: 0 auto 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.figure-pdf {
+  width: 100%;
+  min-height: 480px;
+  display: block;
+}
+
+.figure-container .figure-pdf p {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.figure-container .figure-pdf a {
+  color: var(--link);
+}
+
+.figure-caption {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Audio section */
+.audio-section .audio-intro {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.audio-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -0.5rem;
+}
+
+.audio-table {
+  display: grid;
+  grid-template-columns: 3rem repeat(4, minmax(200px, 1fr));
+  gap: 0;
+  min-width: min(100%, 800px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-content);
+}
+
+/* Table header row */
+.audio-table .audio-row:first-child {
+  background: var(--accent-bg);
+  color: #fff;
+}
+
+.audio-table .audio-row:first-child .audio-cell {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Row label (first column) */
+.audio-cell:first-child {
+  font-weight: 500;
+  min-width: 3rem;
+  text-align: center;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+}
+
+.audio-table .audio-row:first-child .audio-cell:first-child {
+  background: var(--accent-bg);
+  border-right-color: rgba(255, 255, 255, 0.2);
+}
+
+.audio-cell {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.audio-cell:last-child {
+  border-right: none;
+}
+
+.audio-row:last-child .audio-cell {
+  border-bottom: none;
+}
+
+/* Audio player card style */
+.audio-player-wrap {
+  min-width: 200px;
+}
+
+.audio-player-wrap audio {
+  width: 100%;
+  max-width: 280px;
+  height: 36px;
+}
+
+.audio-placeholder {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 0.5rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Citation */
+.bibtex {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.bibtex code {
+  font-family: inherit;
+}
+
+/* Footer */
+.footer {
+  padding: 1rem 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 1rem 2rem;
+    margin-left: 28%;
+    max-width: calc(100% - 28%);
+  }
+}
+
+.footer p {
+  margin: 0;
+}
