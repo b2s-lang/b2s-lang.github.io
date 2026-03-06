@@ -263,39 +263,45 @@ body {
 
 .audio-table {
   display: grid;
-  grid-template-columns: 3rem repeat(4, minmax(200px, 1fr));
   gap: 0;
   min-width: min(100%, 800px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-content);
+  /* grid-template-columns set by script.js from utterance count */
 }
 
-/* Table header row */
-.audio-table .audio-row:first-child {
+/* Header row: corner + utterance labels */
+.audio-table .audio-row-header {
   background: var(--accent-bg);
   color: #fff;
 }
 
-.audio-table .audio-row:first-child .audio-cell {
+.audio-table .audio-row-header .audio-cell {
   font-weight: 600;
   font-size: 0.85rem;
   padding: 0.75rem 1rem;
-}
-
-/* Row label (first column) */
-.audio-cell:first-child {
-  font-weight: 500;
-  min-width: 3rem;
   text-align: center;
-  background: var(--bg);
-  border-right: 1px solid var(--border);
 }
 
-.audio-table .audio-row:first-child .audio-cell:first-child {
-  background: var(--accent-bg);
-  border-right-color: rgba(255, 255, 255, 0.2);
+/* First column: model names (dark sidebar) — no awkward wrapping */
+.audio-cell-label,
+.audio-cell-model {
+  background: var(--accent-bg) !important;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  min-width: 0;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+}
+
+.audio-cell-model {
+  text-align: left;
 }
 
 .audio-cell {

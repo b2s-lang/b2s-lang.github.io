@@ -25,48 +25,50 @@
     var container = document.getElementById(containerId);
     if (!container) return;
 
+    var numUtterances = AUDIO_SAMPLES.length;
     var table = document.createElement('div');
     table.className = 'audio-table';
+    table.style.gridTemplateColumns = 'minmax(10rem, 1fr) repeat(' + numUtterances + ', minmax(200px, 1fr))';
 
-    // Header row
+    // Header row: empty corner + utterance labels (1, 2, 3, ...)
     var headerRow = document.createElement('div');
-    headerRow.className = 'audio-row';
+    headerRow.className = 'audio-row audio-row-header';
     headerRow.setAttribute('role', 'row');
     var emptyCell = document.createElement('div');
-    emptyCell.className = 'audio-cell';
+    emptyCell.className = 'audio-cell audio-cell-label';
     emptyCell.setAttribute('role', 'columnheader');
     emptyCell.textContent = '';
     headerRow.appendChild(emptyCell);
-    AUDIO_COLUMNS.forEach(function (col) {
+    for (var u = 0; u < numUtterances; u++) {
       var th = document.createElement('div');
       th.className = 'audio-cell';
       th.setAttribute('role', 'columnheader');
-      th.textContent = col;
+      th.textContent = AUDIO_SAMPLES[u].rowLabel != null ? String(AUDIO_SAMPLES[u].rowLabel) : '';
       headerRow.appendChild(th);
-    });
+    }
     table.appendChild(headerRow);
 
-    // Data rows
-    AUDIO_SAMPLES.forEach(function (row) {
+    // Data rows: one per model; first cell = model name (dark), then one cell per utterance
+    AUDIO_COLUMNS.forEach(function (modelName) {
       var tr = document.createElement('div');
       tr.className = 'audio-row';
       tr.setAttribute('role', 'row');
       var labelCell = document.createElement('div');
-      labelCell.className = 'audio-cell';
+      labelCell.className = 'audio-cell audio-cell-model';
       labelCell.setAttribute('role', 'rowheader');
-      labelCell.textContent = row.rowLabel != null ? row.rowLabel : '';
+      labelCell.textContent = modelName;
       tr.appendChild(labelCell);
-      AUDIO_COLUMNS.forEach(function (col) {
+      AUDIO_SAMPLES.forEach(function (sample, uIndex) {
         var cell = document.createElement('div');
         cell.className = 'audio-cell';
-        var path = row[col];
+        var path = sample[modelName];
         if (path) {
           var wrap = document.createElement('div');
           wrap.className = 'audio-player-wrap';
           var audio = document.createElement('audio');
           audio.controls = true;
           audio.preload = 'metadata';
-          audio.setAttribute('aria-label', 'Audio: ' + col + ', sample ' + row.rowLabel);
+          audio.setAttribute('aria-label', 'Audio: ' + modelName + ', sample ' + (sample.rowLabel != null ? sample.rowLabel : (uIndex + 1)));
           var src = document.createElement('source');
           src.src = path;
           audio.appendChild(src);
