@@ -222,21 +222,11 @@ body {
   box-shadow: var(--shadow);
 }
 
-.figure-pdf {
+.figure-img {
   width: 100%;
-  min-height: 480px;
+  height: auto;
   display: block;
-}
-
-.figure-container .figure-pdf p {
-  padding: 1rem;
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.figure-container .figure-pdf a {
-  color: var(--link);
+  vertical-align: middle;
 }
 
 .figure-caption {
