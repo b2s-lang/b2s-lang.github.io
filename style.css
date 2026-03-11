@@ -272,7 +272,7 @@ body {
   /* grid-template-columns set by script.js from utterance count */
 }
 
-/* Header row: corner + utterance labels */
+/* Header row: corner + column headers (Baseline 1, 2, 3, Brain2Speech-Net) */
 .audio-table .audio-row-header {
   background: var(--accent-bg);
   color: #fff;
@@ -285,23 +285,26 @@ body {
   text-align: center;
 }
 
-/* First column: model names (dark sidebar) — no awkward wrapping */
-.audio-cell-label,
-.audio-cell-model {
+.audio-cell-corner,
+.audio-cell-header {
+  background: var(--accent-bg) !important;
+  color: #fff !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.audio-cell-header {
+  white-space: nowrap;
+}
+
+/* First column: row labels (1..10) — dark to match header */
+.audio-cell-rowlabel {
   background: var(--accent-bg) !important;
   color: #fff !important;
   font-weight: 600;
   font-size: 0.85rem;
   padding: 0.75rem 1rem;
-  min-width: 0;
-  white-space: nowrap;
+  text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-}
-
-.audio-cell-model {
-  text-align: left;
 }
 
 .audio-cell {

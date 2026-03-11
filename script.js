@@ -11,64 +11,71 @@
 (function () {
   'use strict';
 
-  // ——— Editable: column headers (models/conditions) ———
-  var AUDIO_COLUMNS = ['Ground Truth', 'Baseline 1', 'Baseline 2', 'Brain2Speech-Net'];
+  // ——— Editable: column headers (3 baselines + Brain2Speech-Net) ———
+  var AUDIO_COLUMNS = ['Baseline 1', 'Baseline 2', 'Baseline 3', 'Brain2Speech-Net'];
 
-  // ——— Editable: rows = utterances; each key in row must exist in AUDIO_COLUMNS; value = path or null ———
+  // ——— Editable: 10 samples; each row = one utterance with paths for all columns ———
   var AUDIO_SAMPLES = [
-    { rowLabel: '1', 'Ground Truth': 'assets/audio/gt_1.wav', 'Baseline 1': 'assets/audio/b1_1.wav', 'Baseline 2': 'assets/audio/b2_1.wav', 'Brain2Speech-Net': 'assets/audio/b2s_1.wav' },
-    { rowLabel: '2', 'Ground Truth': 'assets/audio/gt_2.wav', 'Baseline 1': 'assets/audio/b1_2.wav', 'Baseline 2': 'assets/audio/b2_2.wav', 'Brain2Speech-Net': 'assets/audio/b2s_2.wav' },
-    { rowLabel: '3', 'Ground Truth': null, 'Baseline 1': null, 'Baseline 2': null, 'Brain2Speech-Net': null }
+    { rowLabel: '1', 'Baseline 1': 'assets/audio/b1_1.wav', 'Baseline 2': 'assets/audio/b2_1.wav', 'Baseline 3': 'assets/audio/b3_1.wav', 'Brain2Speech-Net': 'assets/audio/b2s_1.wav' },
+    { rowLabel: '2', 'Baseline 1': 'assets/audio/b1_2.wav', 'Baseline 2': 'assets/audio/b2_2.wav', 'Baseline 3': 'assets/audio/b3_2.wav', 'Brain2Speech-Net': 'assets/audio/b2s_2.wav' },
+    { rowLabel: '3', 'Baseline 1': 'assets/audio/b1_3.wav', 'Baseline 2': 'assets/audio/b2_3.wav', 'Baseline 3': 'assets/audio/b3_3.wav', 'Brain2Speech-Net': 'assets/audio/b2s_3.wav' },
+    { rowLabel: '4', 'Baseline 1': 'assets/audio/b1_4.wav', 'Baseline 2': 'assets/audio/b2_4.wav', 'Baseline 3': 'assets/audio/b3_4.wav', 'Brain2Speech-Net': 'assets/audio/b2s_4.wav' },
+    { rowLabel: '5', 'Baseline 1': 'assets/audio/b1_5.wav', 'Baseline 2': 'assets/audio/b2_5.wav', 'Baseline 3': 'assets/audio/b3_5.wav', 'Brain2Speech-Net': 'assets/audio/b2s_5.wav' },
+    { rowLabel: '6', 'Baseline 1': 'assets/audio/b1_6.wav', 'Baseline 2': 'assets/audio/b2_6.wav', 'Baseline 3': 'assets/audio/b3_6.wav', 'Brain2Speech-Net': 'assets/audio/b2s_6.wav' },
+    { rowLabel: '7', 'Baseline 1': 'assets/audio/b1_7.wav', 'Baseline 2': 'assets/audio/b2_7.wav', 'Baseline 3': 'assets/audio/b3_7.wav', 'Brain2Speech-Net': 'assets/audio/b2s_7.wav' },
+    { rowLabel: '8', 'Baseline 1': 'assets/audio/b1_8.wav', 'Baseline 2': 'assets/audio/b2_8.wav', 'Baseline 3': 'assets/audio/b3_8.wav', 'Brain2Speech-Net': 'assets/audio/b2s_8.wav' },
+    { rowLabel: '9', 'Baseline 1': 'assets/audio/b1_9.wav', 'Baseline 2': 'assets/audio/b2_9.wav', 'Baseline 3': 'assets/audio/b3_9.wav', 'Brain2Speech-Net': 'assets/audio/b2s_9.wav' },
+    { rowLabel: '10', 'Baseline 1': 'assets/audio/b1_10.wav', 'Baseline 2': 'assets/audio/b2_10.wav', 'Baseline 3': 'assets/audio/b3_10.wav', 'Brain2Speech-Net': 'assets/audio/b2s_10.wav' }
   ];
 
   function buildAudioTable(containerId) {
     var container = document.getElementById(containerId);
     if (!container) return;
 
-    var numUtterances = AUDIO_SAMPLES.length;
+    var numCols = AUDIO_COLUMNS.length;
     var table = document.createElement('div');
     table.className = 'audio-table';
-    table.style.gridTemplateColumns = 'minmax(10rem, 1fr) repeat(' + numUtterances + ', minmax(200px, 1fr))';
+    table.style.gridTemplateColumns = '3rem repeat(' + numCols + ', minmax(200px, 1fr))';
 
-    // Header row: empty corner + utterance labels (1, 2, 3, ...)
+    // Header row: empty corner + column headers (Baseline 1, Baseline 2, Baseline 3, Brain2Speech-Net)
     var headerRow = document.createElement('div');
     headerRow.className = 'audio-row audio-row-header';
     headerRow.setAttribute('role', 'row');
     var emptyCell = document.createElement('div');
-    emptyCell.className = 'audio-cell audio-cell-label';
+    emptyCell.className = 'audio-cell audio-cell-corner';
     emptyCell.setAttribute('role', 'columnheader');
     emptyCell.textContent = '';
     headerRow.appendChild(emptyCell);
-    for (var u = 0; u < numUtterances; u++) {
+    AUDIO_COLUMNS.forEach(function (col) {
       var th = document.createElement('div');
-      th.className = 'audio-cell';
+      th.className = 'audio-cell audio-cell-header';
       th.setAttribute('role', 'columnheader');
-      th.textContent = AUDIO_SAMPLES[u].rowLabel != null ? String(AUDIO_SAMPLES[u].rowLabel) : '';
+      th.textContent = col;
       headerRow.appendChild(th);
-    }
+    });
     table.appendChild(headerRow);
 
-    // Data rows: one per model; first cell = model name (dark), then one cell per utterance
-    AUDIO_COLUMNS.forEach(function (modelName) {
+    // Data rows: one per sample; first cell = row label (1..10), then one cell per model
+    AUDIO_SAMPLES.forEach(function (sample) {
       var tr = document.createElement('div');
       tr.className = 'audio-row';
       tr.setAttribute('role', 'row');
       var labelCell = document.createElement('div');
-      labelCell.className = 'audio-cell audio-cell-model';
+      labelCell.className = 'audio-cell audio-cell-rowlabel';
       labelCell.setAttribute('role', 'rowheader');
-      labelCell.textContent = modelName;
+      labelCell.textContent = sample.rowLabel != null ? sample.rowLabel : '';
       tr.appendChild(labelCell);
-      AUDIO_SAMPLES.forEach(function (sample, uIndex) {
+      AUDIO_COLUMNS.forEach(function (col) {
         var cell = document.createElement('div');
         cell.className = 'audio-cell';
-        var path = sample[modelName];
+        var path = sample[col];
         if (path) {
           var wrap = document.createElement('div');
           wrap.className = 'audio-player-wrap';
           var audio = document.createElement('audio');
           audio.controls = true;
           audio.preload = 'metadata';
-          audio.setAttribute('aria-label', 'Audio: ' + modelName + ', sample ' + (sample.rowLabel != null ? sample.rowLabel : (uIndex + 1)));
+          audio.setAttribute('aria-label', 'Audio: ' + col + ', sample ' + sample.rowLabel);
           var src = document.createElement('source');
           src.src = path;
           audio.appendChild(src);
