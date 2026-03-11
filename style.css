@@ -259,16 +259,28 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin: 0 -0.5rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Semantic table: 1 header row + 10 data rows; 5 columns (row label + 4 models) */
 .audio-table {
+  table-layout: fixed;
   width: 100%;
-  min-width: 800px;
+  min-width: 1100px;
   border-collapse: collapse;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg-content);
+}
+
+/* Column widths: narrow label column, then equal-width audio columns so headers align */
+.audio-table .col-label {
+  width: 4%;
+}
+
+.audio-table .col-audio {
+  width: 24%;
 }
 
 .audio-table th,
@@ -276,9 +288,10 @@ body {
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
   vertical-align: middle;
+  overflow: hidden;
 }
 
-/* Header row: empty corner + Baseline 1, Baseline 2, Baseline 3, Brain2Speech-Net */
+/* Header row: each model name directly above its column */
 .audio-table thead th {
   background: var(--accent-bg);
   color: #fff;
@@ -290,7 +303,7 @@ body {
 }
 
 .audio-th-corner {
-  width: 3rem;
+  width: 3.5rem;
 }
 
 /* Row labels (1..10) in first column */
@@ -300,23 +313,22 @@ body {
   font-weight: 600;
   font-size: 0.85rem;
   text-align: center;
-  width: 3rem;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Content cells */
+/* Content cells: each column gets equal share of remaining width */
 .audio-table td {
-  min-width: 200px;
+  width: 25%;
 }
 
 /* Audio player card style */
 .audio-player-wrap {
-  min-width: 200px;
+  min-width: 0;
+  width: 100%;
 }
 
 .audio-player-wrap audio {
   width: 100%;
-  max-width: 280px;
   height: 36px;
 }
 

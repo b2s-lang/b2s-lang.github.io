@@ -38,6 +38,17 @@
     table.className = 'audio-table';
     table.setAttribute('role', 'table');
 
+    var colgroup = document.createElement('colgroup');
+    var colCorner = document.createElement('col');
+    colCorner.className = 'col-label';
+    colgroup.appendChild(colCorner);
+    for (var c = 0; c < AUDIO_COLUMNS.length; c++) {
+      var col = document.createElement('col');
+      col.className = 'col-audio';
+      colgroup.appendChild(col);
+    }
+    table.appendChild(colgroup);
+
     var thead = document.createElement('thead');
     var headerRow = document.createElement('tr');
     var corner = document.createElement('th');
