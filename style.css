@@ -261,64 +261,52 @@ body {
   margin: 0 -0.5rem;
 }
 
+/* Semantic table: 1 header row + 10 data rows; 5 columns (row label + 4 models) */
 .audio-table {
-  display: grid;
-  gap: 0;
-  min-width: min(100%, 800px);
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
   background: var(--bg-content);
-  /* grid-template-columns set by script.js from utterance count */
 }
 
-/* Header row: corner + column headers (Baseline 1, 2, 3, Brain2Speech-Net) */
-.audio-table .audio-row-header {
+.audio-table th,
+.audio-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+/* Header row: empty corner + Baseline 1, Baseline 2, Baseline 3, Brain2Speech-Net */
+.audio-table thead th {
   background: var(--accent-bg);
   color: #fff;
-}
-
-.audio-table .audio-row-header .audio-cell {
   font-weight: 600;
   font-size: 0.85rem;
-  padding: 0.75rem 1rem;
   text-align: center;
-}
-
-.audio-cell-corner,
-.audio-cell-header {
-  background: var(--accent-bg) !important;
-  color: #fff !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.audio-cell-header {
   white-space: nowrap;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* First column: row labels (1..10) — dark to match header */
-.audio-cell-rowlabel {
-  background: var(--accent-bg) !important;
-  color: #fff !important;
+.audio-th-corner {
+  width: 3rem;
+}
+
+/* Row labels (1..10) in first column */
+.audio-table tbody th {
+  background: var(--accent-bg);
+  color: #fff;
   font-weight: 600;
   font-size: 0.85rem;
-  padding: 0.75rem 1rem;
   text-align: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  width: 3rem;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-.audio-cell {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-}
-
-.audio-cell:last-child {
-  border-right: none;
-}
-
-.audio-row:last-child .audio-cell {
-  border-bottom: none;
+/* Content cells */
+.audio-table td {
+  min-width: 200px;
 }
 
 /* Audio player card style */

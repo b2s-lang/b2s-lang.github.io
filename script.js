@@ -32,42 +32,40 @@
     var container = document.getElementById(containerId);
     if (!container) return;
 
-    var numCols = AUDIO_COLUMNS.length;
-    var table = document.createElement('div');
-    table.className = 'audio-table';
-    table.style.gridTemplateColumns = '3rem repeat(' + numCols + ', minmax(200px, 1fr))';
+    container.innerHTML = '';
 
-    // Header row: empty corner + column headers (Baseline 1, Baseline 2, Baseline 3, Brain2Speech-Net)
-    var headerRow = document.createElement('div');
-    headerRow.className = 'audio-row audio-row-header';
-    headerRow.setAttribute('role', 'row');
-    var emptyCell = document.createElement('div');
-    emptyCell.className = 'audio-cell audio-cell-corner';
-    emptyCell.setAttribute('role', 'columnheader');
-    emptyCell.textContent = '';
-    headerRow.appendChild(emptyCell);
+    var table = document.createElement('table');
+    table.className = 'audio-table';
+    table.setAttribute('role', 'table');
+
+    var thead = document.createElement('thead');
+    var headerRow = document.createElement('tr');
+    var corner = document.createElement('th');
+    corner.className = 'audio-th audio-th-corner';
+    corner.scope = 'col';
+    corner.textContent = '';
+    headerRow.appendChild(corner);
     AUDIO_COLUMNS.forEach(function (col) {
-      var th = document.createElement('div');
-      th.className = 'audio-cell audio-cell-header';
-      th.setAttribute('role', 'columnheader');
+      var th = document.createElement('th');
+      th.className = 'audio-th';
+      th.scope = 'col';
       th.textContent = col;
       headerRow.appendChild(th);
     });
-    table.appendChild(headerRow);
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
 
-    // Data rows: one per sample; first cell = row label (1..10), then one cell per model
+    var tbody = document.createElement('tbody');
     AUDIO_SAMPLES.forEach(function (sample) {
-      var tr = document.createElement('div');
-      tr.className = 'audio-row';
-      tr.setAttribute('role', 'row');
-      var labelCell = document.createElement('div');
-      labelCell.className = 'audio-cell audio-cell-rowlabel';
-      labelCell.setAttribute('role', 'rowheader');
-      labelCell.textContent = sample.rowLabel != null ? sample.rowLabel : '';
-      tr.appendChild(labelCell);
+      var tr = document.createElement('tr');
+      var rowLabel = document.createElement('th');
+      rowLabel.className = 'audio-th audio-th-row';
+      rowLabel.scope = 'row';
+      rowLabel.textContent = sample.rowLabel != null ? sample.rowLabel : '';
+      tr.appendChild(rowLabel);
       AUDIO_COLUMNS.forEach(function (col) {
-        var cell = document.createElement('div');
-        cell.className = 'audio-cell';
+        var td = document.createElement('td');
+        td.className = 'audio-td';
         var path = sample[col];
         if (path) {
           var wrap = document.createElement('div');
@@ -87,17 +85,18 @@
             wrap.appendChild(fallback);
           });
           wrap.appendChild(audio);
-          cell.appendChild(wrap);
+          td.appendChild(wrap);
         } else {
           var placeholder = document.createElement('div');
           placeholder.className = 'audio-placeholder';
           placeholder.textContent = 'Sample not available';
-          cell.appendChild(placeholder);
+          td.appendChild(placeholder);
         }
-        tr.appendChild(cell);
+        tr.appendChild(td);
       });
-      table.appendChild(tr);
+      tbody.appendChild(tr);
     });
+    table.appendChild(tbody);
 
     container.appendChild(table);
   }
