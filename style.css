@@ -264,13 +264,17 @@ body {
   background: var(--bg-content);
 }
 
-/* Column widths: narrow label column, then equal-width audio columns so headers align */
+/* Column widths: narrow label, transcript column, then equal-width audio columns */
 .audio-table .col-label {
   width: 4%;
 }
 
+.audio-table .col-transcript {
+  width: 20%;
+}
+
 .audio-table .col-audio {
-  width: 24%;
+  width: 19%;
 }
 
 .audio-table th,
@@ -306,9 +310,11 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Content cells: each column gets equal share of remaining width */
-.audio-table td {
-  width: 25%;
+/* Transcript column: readable text, wrap as needed */
+.audio-td-transcript {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 16em;
 }
 
 /* Audio player card style */
